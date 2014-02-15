@@ -61,12 +61,12 @@ public class ServerInfo {
 	/**
 	 * The default maximum number of clients allowed to connect.
 	 */
-	private int defaultMaxClients;
+	private int defaultMaxClients = 1024;
 	
 	/**
 	 * Enforced nick length.
 	 */
-	private int nicklen;
+	private int nicklen = 30;
 	
 	public void setName(String name) throws IrcdConfigurationException {
 		if(!InternetDomainName.isValid(name)) {
@@ -194,9 +194,12 @@ public class ServerInfo {
 		sb.append(StringUtils.configLine("network_name", networkName));
 		sb.append(StringUtils.configLine("network_desc", networkDescription));
 		sb.append(StringUtils.configLine("hub", (hub ? "yes" : "no")));
-		sb.append(StringUtils.configLine("vhost", vhost));
-		sb.append(StringUtils.configLine("vhost6", vhost6));
-		sb.append(sslConfig.toString());
+		if(vhost != null)
+			sb.append(StringUtils.configLine("vhost", vhost));
+		if(vhost6 != null)
+			sb.append(StringUtils.configLine("vhost6", vhost6));
+		if(sslConfig != null)
+			sb.append(sslConfig.toString());
 		sb.append(StringUtils.configLine("default_max_clients", defaultMaxClients));
 		sb.append(StringUtils.configLine("nicklen", nicklen));
 		sb.append("};\n");
