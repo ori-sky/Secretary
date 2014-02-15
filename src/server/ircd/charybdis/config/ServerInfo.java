@@ -88,7 +88,7 @@ public class ServerInfo {
 	public void setDescription(String description) {
 		this.description = description.replaceAll("\\[", "")	// Can't contain '[' for compatability reasons
 				.replaceAll("\\]", "")							// Can't contain ']' for compatability reasons
-				.replaceAll("\"", "\\\"");
+				.replaceAll("\"", "");
 	}
 	
 	public void setNetworkName(String networkName) {
@@ -96,7 +96,7 @@ public class ServerInfo {
 	}
 	
 	public void setNetworkDescription(String networkDescription) {
-		this.networkDescription = networkDescription.replaceAll("\"", "\\\"");
+		this.networkDescription = networkDescription.replaceAll("\"", "");
 	}
 	
 	public void setHub(boolean hub) {
