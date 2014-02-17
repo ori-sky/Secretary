@@ -1,0 +1,26 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="/static/img/favicon.ico"> <!-- TBD -->
+
+  <title></title> <!-- TBD -->
+  <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/static/css/login/animation.css" rel="stylesheet">
+  <link href="/static/css/login/theme.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  {% if username  %}
+  <h1> Hello {{ username }}!</h1>
+  <h2> Your password is {{ password }} </h2>
+  {% else %}
+  <h1> Error: no name given </h1>
+  {% endif %}
+
+</body>
+</html>
