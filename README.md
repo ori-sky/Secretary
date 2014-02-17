@@ -26,4 +26,4 @@ Secretary is an centralized all-in-one tool for IRC network administration.
 Project Status
 --------------
 
-Secretary is currently under development so we can't recommend its use in any production enviroment.
+Secretary is currently under development so we can't recommend its use in any production enviroment. Once Secretary is in a more production-friendly state, we will provide installation instructions as well as security recommendations. 
