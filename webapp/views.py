@@ -1,19 +1,27 @@
-from flask import render_template
-from flask import request
+from flask import render_template, request, session, redirect, url_for
 from webapp import webapp
+from utils import valid_login
+
+@webapp.route('/logout/')
+def logout():
+    session.clear()
+    return redirect(url_for("index"))
+
+@webapp.route('/login/', methods = ["GET", "POST"])
+def login():
+    if 'username' in session:
+        return redirect(url_for("index"))
+    if request.method == "POST":
+        if valid_login(request.form["username"],
+                       request.form["password"]):
+            session["username"] = request.form["username"]
+            return redirect(url_for("index")) 
+        else:
+            return "Bad password!"
+    return render_template("login.html")
 
 @webapp.route('/')
-def login():
-    return render_template('login.html')
-
-@webapp.route('/postlogin', methods=['POST', 'GET'])
-def postlogin():
-    if request.method == 'POST':
-        # TODO: login sessions, login validation, etc
-        if request.form['username'] and request.form['password']:
-            return render_template('postlogin.html', username=request.form['username'],
-                                    password=request.form['password'])
-        else:
-            return render_template('login.html')
-    else:
-        return render_template('login.html')
+def index():
+    if 'username' in session:
+        return "Logged in as %s" % session["username"]
+    return login()
